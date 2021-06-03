@@ -1,22 +1,42 @@
-<h3>My to Do List</h3>
-<a href="{% url 'task-create' %}">Add</a>
+{% extends 'base/home.html' %}
+{% block content %}
 
+<div class="header-bar">
+    <div>
+        <h3>Hello {{request.user|title}}</h3>
+        <h5 style="margin: 0">You have <i>{{count}}</i> incomplete task{{ count|pluralize:'s' }} </h5>
+    </div>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'log_out' %}">Log out</a>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+
+</div>
+
+
+
+<a href="{% url 'task-create' %}">Add</a>
+<form action="" method="GET">
+    <input type="text" name="search" value="{{search}}">
+    <input type="submit" value="Search">
+</form>
 <table>
     <tr>
         <th>Tasks</th>
-
     </tr>
     <tr>
         <td>
-        {% for task in tasks %}
-            {{task.title}} <tab></tab>
-            <a href="{% url 'task-detail' task.id %}">View</a>
-            <a href="{% url 'task-update' task.id %}">Edit</a>
-            <a href="{% url 'task-delete' task.id %}">Delete</a><br>
-        {% empty %}
-            <p>No Task here to do </p>
-        {% endfor %}
+            {% for task in tasks %}
+                {{task.title}}
+                <tab></tab>
+                <a href="{% url 'task-detail' task.id %}">View</a>
+                <a href="{% url 'task-update' task.id %}">Edit</a>
+                <a href="{% url 'task-delete' task.id %}">Delete</a><br>
+            {% empty %}
+                <p>No Task here to do </p>
+            {% endfor %}
         </td>
     </tr>
-
 </table>
+{% endblock %}

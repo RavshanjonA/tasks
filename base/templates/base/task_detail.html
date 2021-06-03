@@ -1,5 +1,7 @@
-
+{% extends 'base/home.html' %}
+{% block content %}
 <h3>Task Detail</h3>
-<p>
-    {{object}}
-</p>
+<p>{{object}}</p>
+<a href="{% url 'tasks' %}">Go back</a>
+<a href="{% url 'task-delete' object.id %}">Delete</a>
+{% endblock %}
