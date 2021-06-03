@@ -1,7 +1,13 @@
 {% extends 'base/home.html' %}
 {% block content %}
-<h3>Task Detail</h3>
-<p>{{object}}</p>
-<a href="{% url 'tasks' %}">Go back</a>
-<a href="{% url 'task-delete' object.id %}">Delete</a>
+    <div class="header-bar">
+        <h3>Task Detail</h3>
+    </div>
+<div class="card-body">
+    <p>{{object}}</p>
+    <a href="{% url 'tasks' %}" class="button">Go back</a>
+    <a href="{% url 'task-update' object.id%}" class="button">Edit</a>
+    <a href="{% url 'task-delete' object.id %}" class="button">Delete</a>
+
+</div>
 {% endblock %}

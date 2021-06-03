@@ -1,11 +1,17 @@
 {% extends 'base/home.html' %}
+{% block title %}
+    Task Update
+{% endblock %}
 {% block content %}
-<h3>Task Create</h3>
-<form action="" method="POST">
-    {{form.as_p}}
-    {% csrf_token %}
-    <input type="submit" value="Ready">
-</form>
-<br>
-<a href="{% url 'tasks' %}"> Go Back </a>
+    <div class="header-bar">
+        <a href="{% url 'tasks' %}">&#8592 Back</a>
+    </div>
+    <div class="card-body">
+        <form method="POST" >
+            {{form.as_p}}
+            {% csrf_token %}
+            <input type="submit" value="Ready" class="button" >
+        </form>
+    </div>
+
 {% endblock %}
